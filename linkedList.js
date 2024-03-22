@@ -22,14 +22,50 @@ class LinkedList {
             this.head = value;
             return;
         }
-        
+
         let current = this.head;
-        
+
         while (current.next !== null) {
             current = current.next
         }
         current.next = value;
+
+        return;
     }
+
+    // size returns the total number of nodes in the list
+    get size() {
+        let size = 0
+        if (this.head === null) {
+            return size
+        }
+        let current = this.head;
+        size++;
+        while (current.next !== null) {
+            current = current.next;
+            size++;
+        }
+        return size;
+    }
+
+    // headList returns the first node in the list
+    get headList(){
+        return this.head;
+    }
+
+    // tail returns the last node in the list
+    get tail(){
+        if(this.head === null){
+            return this.head
+        }
+        let current = this.head;
+        while(current.next !== null){
+            current = current.next;
+        }
+        return current;
+    }
+
+
 }
 
 

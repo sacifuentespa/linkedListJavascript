@@ -24,7 +24,7 @@ list.append(node4);
 
 console.log(list);
 console.log(list.head);
-console.log(list.head.next);
-console.log(list.head.next.next);
 
+console.log(list.size)
+console.log(list.tail)
 //console.log(list.head);
