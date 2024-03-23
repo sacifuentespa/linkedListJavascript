@@ -65,7 +65,95 @@ class LinkedList {
         return current;
     }
 
+    // at(index) returns the node at the given index
+    at(index){
+        if(this.size <= index){
+            return "error index is bigger than last index"
+        }
+        else if(this.head === null){
+            return this.head
+        }
 
+        let current = this.head;
+        for(let i = 0; i < index; i++){
+            current = current.next;
+        }
+        return current;
+    }
+
+    // pop removes the last element from the list
+    /* firstImplementation pop
+    
+    pop(){
+        if(this.head === null){
+            return "this is an empty list";
+        }
+        let current = this.head;
+        while(current.next.next !== null){
+            current = current.next;
+            if (current.next.next === null){
+                current.next = null;
+                return;
+            }            
+        }
+    }*/
+
+    pop(){
+        let itemToPopChange = this.at(this.size-2);
+        itemToPopChange.next = null;
+        return;
+    }
+
+    // contains(value) returns true if the passed in value is 
+    // in the list and otherwise returns false.
+    contains(value){
+        let current = this.head;
+        if(current === null){
+            return false;
+        }
+        while(current !== null){
+            if(current.data === value){
+                return true;
+            }
+            current = current.next;
+        }
+        
+        return false;        
+    }
+
+    // find(value) returns the index of the node 
+    // containing value, or null if not found.
+
+    find(value){
+        let current = this.head;
+        let index = 0;
+        const listSize = this.size
+        if(listSize === 0){
+            return null;
+        }
+
+        while(index < listSize){
+            if(current.data === value){
+                return index;
+            }
+            current = current.next;
+            index++;
+        }
+        return null
+    }
+
+    get toString(){
+        let nodes = [];
+        let current = this.head;
+
+        while(current != null){
+            nodes.push(current.data);
+            current = current.next;
+        }
+        nodes.push("null");
+
+        return nodes.join(' -> ');
+    }
 }
 
 

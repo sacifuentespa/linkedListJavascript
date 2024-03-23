@@ -22,9 +22,14 @@ list.append(node3);
 
 list.append(node4);
 
-console.log(list);
+/*console.log(list);
 console.log(list.head);
 
-console.log(list.size)
+
 console.log(list.tail)
+*/
+
+
+console.log(list.toString)
+
 //console.log(list.head);
