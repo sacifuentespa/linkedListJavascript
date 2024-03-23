@@ -146,7 +146,7 @@ class LinkedList {
         let nodes = [];
         let current = this.head;
 
-        while(current != null){
+        while(current !== null){
             nodes.push(current.data);
             current = current.next;
         }
