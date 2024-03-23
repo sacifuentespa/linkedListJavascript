@@ -49,33 +49,33 @@ class LinkedList {
     }
 
     // headList returns the first node in the list
-    get headList(){
+    get headList() {
         return this.head;
     }
 
     // tail returns the last node in the list
-    get tail(){
-        if(this.head === null){
+    get tail() {
+        if (this.head === null) {
             return this.head
         }
         let current = this.head;
-        while(current.next !== null){
+        while (current.next !== null) {
             current = current.next;
         }
         return current;
     }
 
     // at(index) returns the node at the given index
-    at(index){
-        if(this.size <= index){
+    at(index) {
+        if (this.size <= index) {
             return "error index is bigger than last index"
         }
-        else if(this.head === null){
+        else if (this.head === null) {
             return this.head
         }
 
         let current = this.head;
-        for(let i = 0; i < index; i++){
+        for (let i = 0; i < index; i++) {
             current = current.next;
         }
         return current;
@@ -98,42 +98,42 @@ class LinkedList {
         }
     }*/
 
-    pop(){
-        let itemToPopChange = this.at(this.size-2);
+    pop() {
+        let itemToPopChange = this.at(this.size - 2);
         itemToPopChange.next = null;
         return;
     }
 
     // contains(value) returns true if the passed in value is 
     // in the list and otherwise returns false.
-    contains(value){
+    contains(value) {
         let current = this.head;
-        if(current === null){
+        if (current === null) {
             return false;
         }
-        while(current !== null){
-            if(current.data === value){
+        while (current !== null) {
+            if (current.data === value) {
                 return true;
             }
             current = current.next;
         }
-        
-        return false;        
+
+        return false;
     }
 
     // find(value) returns the index of the node 
     // containing value, or null if not found.
 
-    find(value){
+    find(value) {
         let current = this.head;
         let index = 0;
         const listSize = this.size
-        if(listSize === 0){
+        if (listSize === 0) {
             return null;
         }
 
-        while(index < listSize){
-            if(current.data === value){
+        while (index < listSize) {
+            if (current.data === value) {
                 return index;
             }
             current = current.next;
@@ -142,11 +142,11 @@ class LinkedList {
         return null
     }
 
-    get toString(){
+    get toString() {
         let nodes = [];
         let current = this.head;
 
-        while(current !== null){
+        while (current !== null) {
             nodes.push(current.data);
             current = current.next;
         }
@@ -154,6 +154,56 @@ class LinkedList {
 
         return nodes.join(' -> ');
     }
+
+    // insertAt(value, index) that inserts a new node 
+    // with the provided value at the given index.
+
+    insertAt(value, index) {
+        const listSize = this.size;
+        if (listSize === 0 || index === 0) {
+            if (listSize === 0) {
+                console.log("The list was empty, added in index 0")
+            }
+            this.prepend(value);
+            return;
+        }
+        if (index >= listSize) {
+            console.log("added at the end of the list")
+            this.append(value);
+            return;
+        }
+
+        let previousNode = this.at(index-1); 
+        let actualNode = this.at(index);
+        
+        value.next = actualNode;
+        previousNode.next = value;
+
+        return;
+    }
+
+    removeAt(index){
+        const listSize = this.size;
+        if(index >= listSize){
+            console.log("the index is bigger than list size");
+            return;
+        }
+        
+        if(index === listSize -1){
+            this.pop();
+            return;
+        }
+
+        if(index === 0){
+            this.head = this.at(index+1);
+            return;
+        }
+        
+        let previousNode = this.at(index-1); 
+        previousNode.next = previousNode.next.next;
+        return
+    }
+
 }
 
 
